@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Image, Pressable, ScrollView, Switch, Text, View } from "react-native";
-import styles from "./styleGuestInformation";
+import styles from "./style/style";
 import InputFieldInfo from "../component/InputFieldInfo";
 import ModalPayment from "../component/ModalPayment";
 

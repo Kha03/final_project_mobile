@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styleGuestInformation = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
@@ -60,5 +60,26 @@ const styleGuestInformation = StyleSheet.create({
     color: "red",
     marginTop: 4,
   },
+  //payment detail
+  paymentContent: {
+    overflow: "hidden",
+    backgroundColor: "#1A94FF",
+    borderWidth: 1,
+    borderColor: "#DDDDE3",
+    borderRadius: 8,
+  },
+  paymentContentHeader: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  paymentContentBody: {
+    paddingVertical: 8,
+    flexDirection: "row",
+  },
+  paymentInfo: {
+    paddingVertical: 12,
+  },
 });
-export default styleGuestInformation;
+export default styles;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
-import styles from "../display/styleGuestInformation";
+import styles from "../display/style/style";
 const InputFieldInfo = ({
   label,
   placeholder,

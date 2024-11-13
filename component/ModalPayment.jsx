@@ -1,5 +1,5 @@
 import { FlatList, Image, Modal, Pressable, Text, View } from "react-native";
-import styles from "../display/styleGuestInformation";
+import styles from "../display/style/style";
 data = [
   {
     id: 1,
