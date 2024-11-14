@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   modalHeader: {
-    borderBottomColor: "#DDDDE3",
+    borderBottomColor: "#EBEBF0",
     borderBottomWidth: 1,
     paddingBottom: 8,
   },
   itemRoom: {
     paddingVertical: 8,
-    borderBottomColor: "#DDDDE3",
+    borderBottomColor: "#EBEBF0",
     borderBottomWidth: 1,
   },
   inputText: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#1A94FF",
     borderWidth: 1,
-    borderColor: "#DDDDE3",
+    borderColor: "#EBEBF0",
     borderRadius: 8,
   },
   paymentContentHeader: {
@@ -80,6 +80,12 @@ const styles = StyleSheet.create({
   },
   paymentInfo: {
     paddingVertical: 12,
+  },
+  paymentCusInfo: {
+    marginTop: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#EBEBF0",
   },
 });
 export default styles;

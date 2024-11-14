@@ -90,7 +90,7 @@ const ModalPayment = ({ show, setModal }) => {
               styles.containerRow,
               {
                 marginTop: 8,
-                borderBottomColor: "#DDDDE3",
+                borderBottomColor: "#EBEBF0",
                 borderBottomWidth: 1,
                 paddingBottom: 16,
               },

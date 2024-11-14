@@ -16,7 +16,7 @@ const InputFieldInfo = ({
       <TextInput
         style={[
           styles.inputText,
-          { borderColor: isFocused ? "#1A94FF" : "#DDDDE3" },
+          { borderColor: isFocused ? "#1A94FF" : "#EBEBF0" },
         ]}
         value={value}
         onFocus={() => setIsFocused(true)}
