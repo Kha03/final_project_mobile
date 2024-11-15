@@ -1,5 +1,6 @@
 import { FlatList, Image, Modal, Pressable, Text, View } from "react-native";
 import styles from "../display/style/style";
+import RoomPriceItem from "./RoomPriceItem";
 data = [
   {
     id: 1,
@@ -32,30 +33,6 @@ data = [
     price: "3.600.000 ₫",
   },
 ];
-const Item = ({ data }) => {
-  return (
-    <View
-      style={[
-        styles.containerRow,
-        { alignItems: "flex-start" },
-        styles.itemRoom,
-      ]}
-    >
-      <Text
-        style={[
-          styles.text,
-          {
-            width: "50%",
-            fontWeight: "regular",
-          },
-        ]}
-      >
-        {data.des}
-      </Text>
-      <Text style={styles.text}>{data.price}</Text>
-    </View>
-  );
-};
 const ModalPayment = ({ show, setModal }) => {
   return (
     <Modal transparent={true} visible={show} animationType="slide">
@@ -81,7 +58,7 @@ const ModalPayment = ({ show, setModal }) => {
           >
             <FlatList
               data={data}
-              renderItem={({ item }) => <Item data={item} />}
+              renderItem={({ item }) => <RoomPriceItem item={item} />}
               keyExtractor={(item) => item.id + ""}
             />
           </View>

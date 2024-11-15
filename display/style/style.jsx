@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  containerCenter: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   text: {
     fontSize: 14,
     fontWeight: "bold",
@@ -80,12 +84,56 @@ const styles = StyleSheet.create({
   },
   paymentInfo: {
     paddingVertical: 12,
+    marginTop: 8,
   },
   paymentCusInfo: {
     marginTop: 12,
     paddingBottom: 8,
     borderBottomWidth: 1,
     borderBottomColor: "#EBEBF0",
+  },
+  //payment ReservationList
+  Reservation: {
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: "#fff",
+  },
+  //state payment
+  statePayment: {
+    minWidth: 50,
+    maxWidth: 142,
+    fontWeight: "regular",
+    fontSize: 14,
+    color: "#CC8100",
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    backgroundColor: "#FFF5C7",
+    textAlign: "center",
+  },
+  stateSuccess: {
+    color: "#007D3A",
+    backgroundColor: "#D7FAE0",
+  },
+  stateCancel: {
+    color: "#808089",
+    backgroundColor: "#EBEBF0",
+  },
+  stateFail: {
+    color: "#FF424F",
+    backgroundColor: "#FFF0F1",
+  },
+  //code copy
+  codeCopy: {
+    backgroundColor: "#F0F8FF",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  //hiddenContent
+  hiddenContent: {
+    overflow: "hidden",
   },
 });
 export default styles;
