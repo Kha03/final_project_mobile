@@ -45,24 +45,66 @@ data = [
     price: "3.600.000 ₫",
   },
 ];
+const ExpandableSection = ({
+  title,
+  content,
+  isVisible,
+  setVisible,
+  animatedValue,
+  contentHeight,
+  setContentHeight,
+}) => (
+  <View style={[styles.container, styles.paymentInfo]}>
+    <Pressable
+      style={styles.containerRow}
+      onPress={() => {
+        setVisible(!isVisible);
+        Animated.timing(animatedValue, {
+          toValue: isVisible ? 0 : contentHeight,
+          duration: 500,
+          useNativeDriver: false,
+        }).start();
+      }}
+    >
+      <Text style={[styles.text, { fontSize: 16 }]}>{title}</Text>
+      <Image
+        source={
+          isVisible
+            ? require("../assets/icons/arrow_top.png")
+            : require("../assets/icons/arrow_bot.png")
+        }
+      />
+    </Pressable>
+
+    <View
+      style={{ position: "absolute", opacity: 0 }}
+      onLayout={(event) => setContentHeight(event.nativeEvent.layout.height)}
+    >
+      {content}
+    </View>
+
+    <Animated.View style={[styles.hiddenContent, { height: animatedValue }]}>
+      {isVisible && content}
+    </Animated.View>
+  </View>
+);
+
 const OrderConfirmed = ({ state }) => {
   const statusText = statusTextMap[state?.status] || "Đang xử lý";
   const stateStyle = stateMap[state?.status] || styles.statePayment;
+
   const [isPayInfoVisible, setPayInfoVisible] = useState(false);
-  const [isContactInfoVisible, setContactInfoVisible] = useState(false);
-
   const payInfoHeight = useRef(new Animated.Value(0)).current;
+  const [payInfoContentHeight, setPayInfoContentHeight] = useState(0);
+
+  const [isContactInfoVisible, setContactInfoVisible] = useState(false);
   const contactInfoHeight = useRef(new Animated.Value(0)).current;
+  const [contactInfoContentHeight, setContactInfoContentHeight] = useState(0);
 
-  const toggleSection = (isVisible, setVisible, animatedValue) => {
-    setVisible(!isVisible);
+  const [isRoomPriceVisible, setRoomPriceVisible] = useState(false);
+  const roomPriceHeight = useRef(new Animated.Value(0)).current;
+  const [roomPriceContentHeight, setRoomPriceContentHeight] = useState(0);
 
-    Animated.timing(animatedValue, {
-      toValue: isVisible ? 0 : "100%", // Đặt chiều cao tối đa bạn muốn, ví dụ: 100.
-      duration: 300, // Thời gian chuyển động (ms).
-      useNativeDriver: false, // Phải để `false` khi thao tác với chiều cao.
-    }).start();
-  };
   return (
     <ScrollView
       contentContainerStyle={{
@@ -70,6 +112,7 @@ const OrderConfirmed = ({ state }) => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#F5F5FA",
+        paddingBottom: 20,
       }}
     >
       <View>
@@ -77,81 +120,67 @@ const OrderConfirmed = ({ state }) => {
           <Text style={[stateStyle]}>{statusText}</Text>
           <RoomInfoPayment code={1234} />
         </View>
-        <View style={[styles.container, styles.paymentInfo]}>
-          <Pressable style={styles.containerRow}>
-            <Text style={[styles.text, { fontSize: 16 }]}>Thông tin khách</Text>
-            <Image source={require("../assets/icons/arrow_bot.png")} />
-          </Pressable>
-          <CusPayInfo />
-        </View>
-        <View style={[styles.container, styles.paymentInfo]}>
-          <Pressable
-            style={styles.containerRow}
-            onPress={() =>
-              toggleSection(isPayInfoVisible, setPayInfoVisible, payInfoHeight)
-            }
-          >
-            <Text style={[styles.text, { fontSize: 16 }]}>Thông liên hệ</Text>
-            {isPayInfoVisible ? (
-              <Image source={require("../assets/icons/arrow_top.png")} />
-            ) : (
-              <Image source={require("../assets/icons/arrow_bot.png")} />
-            )}
-          </Pressable>
-          <Animated.View
-            style={[styles.hiddenContent, { height: payInfoHeight }]}
-          >
-            <CusPayInfo />
-          </Animated.View>
-        </View>
-        <View style={[styles.container, styles.paymentInfo]}>
-          <Pressable style={styles.containerRow}>
-            <Text style={[styles.text, { fontSize: 16, marginBottom: 14 }]}>
-              Thông tin khách
-            </Text>
-            <Image source={require("../assets/icons/arrow_bot.png")} />
-          </Pressable>
-          {data.map((item) => (
+
+        <ExpandableSection
+          title="Thông tin khách"
+          content={<CusPayInfo />}
+          isVisible={isPayInfoVisible}
+          setVisible={setPayInfoVisible}
+          animatedValue={payInfoHeight}
+          contentHeight={payInfoContentHeight}
+          setContentHeight={setPayInfoContentHeight}
+        />
+
+        <ExpandableSection
+          title="Thông tin liên hệ"
+          content={<CusContactInfo />}
+          isVisible={isContactInfoVisible}
+          setVisible={setContactInfoVisible}
+          animatedValue={contactInfoHeight}
+          contentHeight={contactInfoContentHeight}
+          setContentHeight={setContactInfoContentHeight}
+        />
+
+        <ExpandableSection
+          title="Chi tiết giá"
+          content={data.map((item) => (
             <RoomPriceItem item={item} key={item.id} />
           ))}
-          <View style={[styles.containerRow, styles.paymentCusInfo]}>
-            <Text
-              style={[styles.text, { fontWeight: "regular", lineHeight: 18 }]}
-            >
-              Thuế và phí
-            </Text>
-            <Text
-              style={[styles.text, { lineHeight: 18, fontWeight: "medium" }]}
-            >
-              800.000 ₫
-            </Text>
-          </View>
-          <View style={[styles.containerRow, styles.paymentCusInfo]}>
-            <Text
-              style={[styles.text, { fontWeight: "regular", lineHeight: 18 }]}
-            >
-              Tổng cộng
-            </Text>
-            <Text style={[styles.text, { fontSize: 16, lineHeight: 18 }]}>
-              8.000.000 ₫
-            </Text>
-          </View>
+          isVisible={isRoomPriceVisible}
+          setVisible={setRoomPriceVisible}
+          animatedValue={roomPriceHeight}
+          contentHeight={roomPriceContentHeight}
+          setContentHeight={setRoomPriceContentHeight}
+        />
+
+        <View style={[styles.containerRow, styles.paymentCusInfo]}>
+          <Text
+            style={[styles.text, { fontWeight: "regular", lineHeight: 18 }]}
+          >
+            Thuế và phí
+          </Text>
+          <Text style={[styles.text, { lineHeight: 18, fontWeight: "medium" }]}>
+            800.000 ₫
+          </Text>
         </View>
-        <View style={[styles.container, styles.paymentInfo]}>
-          <View style={[styles.containerRow, { marginTop: 8 }]}>
-            <Text style={styles.text}>Tổng giá tiền</Text>
-            <Text style={[styles.text, { color: "#1A94FF" }]}>8.000.000đ</Text>
-          </View>
-          <View style={{ marginTop: 4 }}>
-            <Text
-              style={{ fontSize: 12, color: "#808089", textAlign: "right" }}
-            >
-              Đã bao gồm thuế
-            </Text>
-          </View>
+        <View style={[styles.containerRow, styles.paymentCusInfo]}>
+          <Text
+            style={[styles.text, { fontWeight: "regular", lineHeight: 18 }]}
+          >
+            Tổng cộng
+          </Text>
+          <Text
+            style={[
+              styles.text,
+              { fontSize: 16, lineHeight: 18, color: "#1A94FF" },
+            ]}
+          >
+            8.000.000 ₫
+          </Text>
         </View>
       </View>
     </ScrollView>
   );
 };
+
 export default OrderConfirmed;

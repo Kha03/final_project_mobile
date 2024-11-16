@@ -1,6 +1,15 @@
+import * as Clipboard from "expo-clipboard";
 import { Image, Pressable, Text, View } from "react-native";
+
+import { useState } from "react";
 import styles from "../display/style/style";
+import Toast from "./Toast";
 const RoomInfoPayment = ({ code }) => {
+  const [toast, setToast] = useState(false);
+  const copyToClipboard = (codeCop) => {
+    setToast(true);
+    Clipboard.setStringAsync(codeCop);
+  };
   return (
     <View style={[styles.paymentContent, { marginTop: 16 }]}>
       <View style={styles.paymentContentHeader}>
@@ -175,6 +184,7 @@ const RoomInfoPayment = ({ code }) => {
               <Text style={[styles.text]}>12323</Text>
             </View>
             <Pressable
+              onPress={() => copyToClipboard(code)}
               style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
             >
               <Image source={require("../assets/icons/copy_icon.png")} />
@@ -182,6 +192,7 @@ const RoomInfoPayment = ({ code }) => {
           </View>
         )}
       </View>
+      {toast && <Toast setToast={setToast} />}
     </View>
   );
 };

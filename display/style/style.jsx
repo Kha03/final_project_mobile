@@ -135,5 +135,18 @@ const styles = StyleSheet.create({
   hiddenContent: {
     overflow: "hidden",
   },
+  //toast
+  toastContainer: {
+    width: "100%",
+    flexDirection: "row",
+    position: "absolute",
+    alignItems: "center",
+    backgroundColor: "#00AB56",
+    paddingVertical: 9,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+  },
 });
 export default styles;
