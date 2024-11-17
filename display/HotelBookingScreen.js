@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, ImageBackground, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
-import DestinationModal from '../Model/DestinationModal';
+import DestinationModal from '../component/DestinationModal';
 import { useDispatch } from 'react-redux';
-import { fetchHotelsByLocation } from '../redux/slices/hotelSlice'; // Đảm bảo đường dẫn đúng
+import { fetchHotelsByLocation } from '../redux/slices/hotelSlice'; 
 const HotelBookingScreen = ({ navigation }) => {
 
   const [isModalVisible, setModalVisible] = useState(false);

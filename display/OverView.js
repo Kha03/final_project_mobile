@@ -11,7 +11,7 @@ const HotelDetailScreen = () => {
       {/* Header với hình ảnh background */}
 
       <ImageBackground
-        source={require('../assets/Carousel - Section')  } 
+        source={require('../assets/Carousel - Section.png')  } 
         style={styles.headerBackground}
         imageStyle={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}
       >
