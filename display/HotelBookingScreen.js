@@ -4,8 +4,58 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
 import DestinationModal from '../component/DestinationModal';
 import { useDispatch } from 'react-redux';
-import { fetchHotelsByLocation } from '../redux/slices/hotelSlice'; 
+import { fetchHotelsByLocation } from '../redux/slices/hotelSlice';
+import CheckinDateModal from '../component/CheckinDateModal';
+import NightsSelectionModal from '../component/NightsSelectionModal';
+import RoomSelectionModal from '../component/RoomSelectionModal';
 const HotelBookingScreen = ({ navigation }) => {
+
+  const [isRoomModalVisible, setRoomModalVisible] = useState(false);
+
+  const openRoomModal = () => setRoomModalVisible(true);
+  const closeRoomModal = () => setRoomModalVisible(false);
+  const [checkoutDate, setCheckoutDate] = useState('');
+
+  const [isNightsModalVisible, setNightsModalVisible] = useState(false);
+
+
+  const openNightsModal = () => {
+    setNightsModalVisible(true);
+  };
+
+  const closeNightsModal = () => {
+    setNightsModalVisible(false);
+  };
+
+  const handleNightsConfirm = (selectedNights) => {
+    setNights(selectedNights);
+    const checkin = new Date(checkinDate.split('/').reverse().join('-'));
+    checkin.setDate(checkin.getDate() + selectedNights);
+    const formattedCheckout = checkin.toLocaleDateString('vi-VN'); // Định dạng ngày tháng kiểu Việt Nam
+    setCheckoutDate(formattedCheckout);
+    closeNightsModal();
+  };
+
+
+  const [isDateModalVisible, setDateModalVisible] = useState(false);
+  const [checkinDate, setCheckinDate] = useState('02/02/2022');
+  const [nights, setNights] = useState(1);
+
+  const openDateModal = () => {
+    setDateModalVisible(true);
+  };
+
+
+  const closeDateModal = () => {
+    setDateModalVisible(false);
+  };
+
+
+  const handleDateConfirm = (date, selectedNights) => {
+    setCheckinDate(date);
+    setNights(selectedNights);
+    closeDateModal();
+  };
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [destination, setDestination] = useState('');
@@ -20,7 +70,7 @@ const HotelBookingScreen = ({ navigation }) => {
 
   const handleSelectDestination = (selectedDestination) => {
     setDestination(selectedDestination); // Cập nhật điểm đến được chọn
-    closeModal(); // Đóng modal
+    closeModal();
   };
 
   const [location, setLocation] = useState('');
@@ -31,6 +81,19 @@ const HotelBookingScreen = ({ navigation }) => {
       navigation.navigate('HotelListingScreen'); // Chuyển sang màn hình kết quả
     });
   };
+
+  const [rooms, setRooms] = useState(1);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+
+  const handleRoomConfirm = (selectedRooms, selectedAdults, selectedChildren) => {
+    setRooms(selectedRooms);
+    setAdults(selectedAdults);
+    setChildren(selectedChildren);
+    closeRoomModal();
+  };
+
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -55,7 +118,7 @@ const HotelBookingScreen = ({ navigation }) => {
               placeholder="Nhập điểm đến, khách sạn"
               value={destination}
               onFocus={openModal}
-              
+
             />
           </View>
         </View>
@@ -66,27 +129,62 @@ const HotelBookingScreen = ({ navigation }) => {
         />
         {/* Ngày nhận phòng và số đêm nghỉ */}
         <View style={[styles.inputRow, styles.dateContainer]}>
-          <View style={styles.dateRowItem}>
+          <TouchableOpacity style={styles.dateRowItem} onPress={openDateModal}>
             <Image source={require('../assets/Icon_lich.png')} />
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Ngày nhận phòng</Text>
-              <Text style={styles.dateValue}>Thứ Tư, 02/02/2022</Text>
+              <Text style={styles.dateValue}>
+                Thứ {checkinDate ? new Date(checkinDate.split('/').reverse().join('-')).getDay() : ''}, {checkinDate || 'Chưa chọn'}
+              </Text>
             </View>
-          </View>
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>Số đêm nghỉ</Text>
-            <Text style={styles.dateValue}>1 đêm</Text>
-          </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={styles.dateRowItem} onPress={openNightsModal}>
+            <Image source={require('../assets/Icon_lich.png')} />
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Số đêm nghỉ</Text>
+              <Text style={styles.dateValue}>{nights} đêm</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
+        <View style={styles.inputRowOut} >
+          <View style={styles.inputGroup}>
+            <Text style={styles.inputLabel}>Ngày trả phòng</Text>
+            <Text style={styles.dateValue}>Thứ {checkoutDate ? new Date(checkoutDate.split('/').reverse().join('-')).getDay() : ''}, {checkoutDate || 'Chưa chọn'}</Text>
+          </View>
+        </View>
+        <CheckinDateModal
+          visible={isDateModalVisible}
+          onClose={closeDateModal}
+          onConfirm={handleDateConfirm}
+        />
+        <NightsSelectionModal
+          visible={isNightsModalVisible}
+          onClose={closeNightsModal}
+          onConfirm={handleNightsConfirm}
+          currentDate={checkinDate}
+        />
         {/* Số phòng và khách */}
         <View style={styles.inputRow}>
           <Image source={require('../assets/human.png')} />
-          <View style={styles.inputGroup}>
+          <TouchableOpacity style={styles.inputGroup} onPress={openRoomModal}>
             <Text style={styles.inputLabel}>Số phòng và khách</Text>
-            <Text style={styles.dateValue}>1 phòng, 1 người lớn</Text>
-          </View>
+            <Text>{`${rooms} phòng, ${adults} người lớn, ${children} trẻ em`}</Text>
+          </TouchableOpacity>
+
+
         </View>
+        <RoomSelectionModal
+          visible={isRoomModalVisible}
+          onClose={closeRoomModal}
+          onConfirm={handleRoomConfirm}
+          defaultRooms={rooms}
+          defaultAdults={adults}
+          defaultChildren={children}
+        />
+
 
         {/* Bộ lọc */}
         <View style={styles.inputRow}>
@@ -195,10 +293,15 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   inputRow: {
-    flexDirection: 'row',  // Sử dụng row để sắp xếp icon và input
-    alignItems: 'flex-end', // Căn chỉnh các phần tử ở dưới cùng của container
+    flexDirection: 'row',
+    alignItems: 'flex-end',
     marginBottom: 16,
-    position: 'relative',  // Cho phép đặt các phần tử con ở vị trí tuyệt đối
+    position: 'relative',
+  },
+  inputRowOut: {
+    flexDirection: 'row',
+    marginBottom: 8,
+    marginLeft: 18,
   },
   inputGroup: {
     marginLeft: 8,
