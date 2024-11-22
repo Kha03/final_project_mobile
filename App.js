@@ -1,20 +1,48 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import store from "./redux/store";
 import GuestInformation from "./display/GuestInformation";
 import PaymentCheckout from "./display/PaymentCheckout";
 import StatePayment from "./display/StatePayment";
 import ReservationList from "./display/ReservationList";
 import OrderConfirmed from "./display/OrderConfirmed";
+import HotelListingScreen from "./display/HotelListingScreen";
+import HotelBookingScreen from "./display/HotelBookingScreen";
+import OverView from "./display/OverView";
+import { Provider } from "react-redux";
+import ChooseRoom from "./display/ChooseRoom";
+import NoRoomFound from "./display/NoRoomFound";
 const Stack = createNativeStackNavigator();
 function RootStack() {
   return (
-    <Stack.Navigator initialRouteName="ReservationList">
-      <Stack.Screen name="Home" component={GuestInformation} />
-      <Stack.Screen name="PaymentCheckout" component={PaymentCheckout} />
-      <Stack.Screen name="StatePayment" component={StatePayment} />
-      <Stack.Screen name="ReservationList" component={ReservationList} />
-      <Stack.Screen name="OrderConfirmed" component={OrderConfirmed} />
-    </Stack.Navigator>
+    <Provider store={store}>
+      <Stack.Navigator initialRouteName="NoRoomFound">
+        <Stack.Screen name="Home" component={GuestInformation} />
+        <Stack.Screen name="PaymentCheckout" component={PaymentCheckout} />
+        <Stack.Screen name="StatePayment" component={StatePayment} />
+        <Stack.Screen name="ReservationList" component={ReservationList} />
+        <Stack.Screen name="OrderConfirmed" component={OrderConfirmed} />
+        <Stack.Screen name="ChooseRoom" component={ChooseRoom} />
+        <Stack.Screen name="NoRoomFound" component={NoRoomFound} />
+
+        <Stack.Screen
+          name="HotelListingScreen"
+          component={HotelListingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HotelBookingScreen"
+          component={HotelBookingScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="OverView"
+          component={OverView}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </Provider>
   );
 }
 export default function App() {

@@ -148,5 +148,18 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
   },
+  // room card
+  rowBody: {
+    flexDirection: "row",
+    gap: 8,
+    alignItems: "center",
+  },
+  rowGroup: {
+    marginTop: 10,
+    rowGap: 10,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#EBEBF0",
+  },
 });
 export default styles;

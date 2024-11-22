@@ -86,7 +86,6 @@ const PaymentCheckout = ({ navigation }) => {
               },
             ]}
           >
-            {" "}
             vui lòng đợi trong giây lát.
           </Text>
         </View>
