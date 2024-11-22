@@ -8,7 +8,7 @@ import OrderConfirmed from "./display/OrderConfirmed";
 const Stack = createNativeStackNavigator();
 function RootStack() {
   return (
-    <Stack.Navigator initialRouteName="OrderConfirmed">
+    <Stack.Navigator initialRouteName="ReservationList">
       <Stack.Screen name="Home" component={GuestInformation} />
       <Stack.Screen name="PaymentCheckout" component={PaymentCheckout} />
       <Stack.Screen name="StatePayment" component={StatePayment} />

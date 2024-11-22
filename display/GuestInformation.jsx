@@ -91,7 +91,7 @@ const GuestInformation = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={[styles.text, { fontSize: 16 }]}>Thông tin liên hệ</Text>
       <View>
         <View style={{ marginTop: 16 }}>
