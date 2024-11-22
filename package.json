@@ -25,7 +25,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@react-native-community/cli": "^15.1.2"
+    "@react-native-community/cli": "^15.1.2",
+    "expo-module-scripts": "^4.0.2"
   },
   "private": true
 }
