@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Image } from 'react-native';
 
 const RoomSelectionModal = ({ visible, onClose, onConfirm, defaultRooms, defaultAdults, defaultChildren }) => {
   const [rooms, setRooms] = useState(defaultRooms || 1);
@@ -25,7 +25,8 @@ const RoomSelectionModal = ({ visible, onClose, onConfirm, defaultRooms, default
           <Text style={styles.modalTitle}>Chọn số phòng và khách</Text>
           <Text style={styles.subtitle}>Tối đa 8 phòng, 32 người lớn, 6 trẻ em</Text>
           <View style={styles.row}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>'
+              <Image source={require('../assets/icons/phong.png')} />
               <Text style={styles.label}>Phòng</Text>
             </View>
             <View style={styles.counter}>
@@ -46,6 +47,7 @@ const RoomSelectionModal = ({ visible, onClose, onConfirm, defaultRooms, default
           </View>
           <View style={styles.row}>
             <View style={{ flex: 1 }}>
+              <Image source={require('../assets/icons/nguoilon.png')} />
               <Text style={styles.label}>Người lớn</Text>
               <Text style={styles.subLabel}>Từ 18 tuổi</Text>
             </View>
@@ -67,6 +69,7 @@ const RoomSelectionModal = ({ visible, onClose, onConfirm, defaultRooms, default
           </View>
           <View style={styles.row}>
             <View style={{ flex: 1 }}>
+              <Image source={require('../assets/icons/treem.png')} />
               <Text style={styles.label}>Trẻ em</Text>
               <Text style={styles.subLabel}>Từ 0 đến 17 tuổi</Text>
             </View>
