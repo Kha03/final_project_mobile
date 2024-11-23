@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Pressable, Image } from "react-native";
 import styles from "../display/style/style";
 
-const HotelRoomCard = () => {
+const HotelRoomCard = ({ setModal }) => {
   return (
     <View
       style={[
@@ -52,6 +52,7 @@ const HotelRoomCard = () => {
               opacity: pressed ? 0.8 : 1,
             },
           ]}
+          onPress={setModal}
         >
           <Image source={require("../assets/icons/arrow_bot.png")} />
         </Pressable>

@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   rowGroup: {
     marginTop: 10,
     rowGap: 10,
-    paddingBottom: 8,
+    paddingBottom: 9,
     borderBottomWidth: 1,
     borderBottomColor: "#EBEBF0",
   },

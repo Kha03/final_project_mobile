@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function RootStack() {
   return (
     <Provider store={store}>
-      <Stack.Navigator initialRouteName="NoRoomFound">
+      <Stack.Navigator initialRouteName="ChooseRoom">
         <Stack.Screen name="Home" component={GuestInformation} />
         <Stack.Screen name="PaymentCheckout" component={PaymentCheckout} />
         <Stack.Screen name="StatePayment" component={StatePayment} />
