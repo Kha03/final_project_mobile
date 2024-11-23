@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, ImageBackground, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Swiper from 'react-native-swiper';
-import DestinationModal from '../component/DestinationModal';
-import { useDispatch } from 'react-redux';
-import { fetchHotelsByLocation } from '../redux/slices/hotelSlice';
-import CheckinDateModal from '../component/CheckinDateModal';
-import NightsSelectionModal from '../component/NightsSelectionModal';
-import RoomSelectionModal from '../component/RoomSelectionModal';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import Swiper from "react-native-swiper";
+import DestinationModal from "../component/DestinationModal";
+import { useDispatch } from "react-redux";
+import { fetchHotelsByLocation } from "../redux/slices/hotelSlice";
+import CheckinDateModal from "../component/CheckinDateModal";
+import NightsSelectionModal from "../component/NightsSelectionModal";
+import RoomSelectionModal from "../component/RoomSelectionModal";
 const HotelBookingScreen = ({ navigation }) => {
-
   const [isRoomModalVisible, setRoomModalVisible] = useState(false);
 
   const openRoomModal = () => setRoomModalVisible(true);
   const closeRoomModal = () => setRoomModalVisible(false);
-  const [checkoutDate, setCheckoutDate] = useState('');
+  const [checkoutDate, setCheckoutDate] = useState("");
 
   const [isNightsModalVisible, setNightsModalVisible] = useState(false);
-
 
   const openNightsModal = () => {
     setNightsModalVisible(true);
@@ -29,27 +36,24 @@ const HotelBookingScreen = ({ navigation }) => {
 
   const handleNightsConfirm = (selectedNights) => {
     setNights(selectedNights);
-    const checkin = new Date(checkinDate.split('/').reverse().join('-'));
+    const checkin = new Date(checkinDate.split("/").reverse().join("-"));
     checkin.setDate(checkin.getDate() + selectedNights);
-    const formattedCheckout = checkin.toLocaleDateString('vi-VN'); // Định dạng ngày tháng kiểu Việt Nam
+    const formattedCheckout = checkin.toLocaleDateString("vi-VN"); // Định dạng ngày tháng kiểu Việt Nam
     setCheckoutDate(formattedCheckout);
     closeNightsModal();
   };
 
-
   const [isDateModalVisible, setDateModalVisible] = useState(false);
-  const [checkinDate, setCheckinDate] = useState('02/02/2022');
+  const [checkinDate, setCheckinDate] = useState("02/02/2022");
   const [nights, setNights] = useState(1);
 
   const openDateModal = () => {
     setDateModalVisible(true);
   };
 
-
   const closeDateModal = () => {
     setDateModalVisible(false);
   };
-
 
   const handleDateConfirm = (date, selectedNights) => {
     setCheckinDate(date);
@@ -58,7 +62,7 @@ const HotelBookingScreen = ({ navigation }) => {
   };
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [destination, setDestination] = useState('');
+  const [destination, setDestination] = useState("");
 
   const openModal = () => {
     setModalVisible(true);
@@ -73,12 +77,12 @@ const HotelBookingScreen = ({ navigation }) => {
     closeModal();
   };
 
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
   const dispatch = useDispatch();
 
   const handleSearch = () => {
     dispatch(fetchHotelsByLocation(location)).then(() => {
-      navigation.navigate('HotelListingScreen'); // Chuyển sang màn hình kết quả
+      navigation.navigate("HotelListingScreen"); // Chuyển sang màn hình kết quả
     });
   };
 
@@ -86,8 +90,11 @@ const HotelBookingScreen = ({ navigation }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
-
-  const handleRoomConfirm = (selectedRooms, selectedAdults, selectedChildren) => {
+  const handleRoomConfirm = (
+    selectedRooms,
+    selectedAdults,
+    selectedChildren
+  ) => {
     setRooms(selectedRooms);
     setAdults(selectedAdults);
     setChildren(selectedChildren);
@@ -98,12 +105,12 @@ const HotelBookingScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
       {/* Header */}
       <ImageBackground
-        source={require('../assets/banner.png')}
+        source={require("../assets/banner.png")}
         style={styles.headerBackground}
       >
         <View style={styles.header}>
           <Text style={styles.logoText}>Logo</Text>
-          <Image source={require('../assets/_button.png')} />
+          <Image source={require("../assets/_button.png")} />
         </View>
       </ImageBackground>
 
@@ -118,7 +125,6 @@ const HotelBookingScreen = ({ navigation }) => {
               placeholder="Nhập điểm đến, khách sạn"
               value={destination}
               onFocus={openModal}
-
             />
           </View>
         </View>
@@ -130,18 +136,26 @@ const HotelBookingScreen = ({ navigation }) => {
         {/* Ngày nhận phòng và số đêm nghỉ */}
         <View style={[styles.inputRow, styles.dateContainer]}>
           <TouchableOpacity style={styles.dateRowItem} onPress={openDateModal}>
-            <Image source={require('../assets/Icon_lich.png')} />
+            <Image source={require("../assets/Icon_lich.png")} />
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Ngày nhận phòng</Text>
               <Text style={styles.dateValue}>
-                Thứ {checkinDate ? new Date(checkinDate.split('/').reverse().join('-')).getDay() : ''}, {checkinDate || 'Chưa chọn'}
+                Thứ{" "}
+                {checkinDate
+                  ? new Date(
+                      checkinDate.split("/").reverse().join("-")
+                    ).getDay()
+                  : ""}
+                , {checkinDate || "Chưa chọn"}
               </Text>
             </View>
           </TouchableOpacity>
 
-
-          <TouchableOpacity style={styles.dateRowItem} onPress={openNightsModal}>
-            <Image source={require('../assets/Icon_lich.png')} />
+          <TouchableOpacity
+            style={styles.dateRowItem}
+            onPress={openNightsModal}
+          >
+            <Image source={require("../assets/Icon_lich.png")} />
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Số đêm nghỉ</Text>
               <Text style={styles.dateValue}>{nights} đêm</Text>
@@ -149,10 +163,16 @@ const HotelBookingScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.inputRowOut} >
+        <View style={styles.inputRowOut}>
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Ngày trả phòng</Text>
-            <Text style={styles.dateValue}>Thứ {checkoutDate ? new Date(checkoutDate.split('/').reverse().join('-')).getDay() : ''}, {checkoutDate || 'Chưa chọn'}</Text>
+            <Text style={styles.dateValue}>
+              Thứ{" "}
+              {checkoutDate
+                ? new Date(checkoutDate.split("/").reverse().join("-")).getDay()
+                : ""}
+              , {checkoutDate || "Chưa chọn"}
+            </Text>
           </View>
         </View>
         <CheckinDateModal
@@ -168,13 +188,11 @@ const HotelBookingScreen = ({ navigation }) => {
         />
         {/* Số phòng và khách */}
         <View style={styles.inputRow}>
-          <Image source={require('../assets/human.png')} />
+          <Image source={require("../assets/human.png")} />
           <TouchableOpacity style={styles.inputGroup} onPress={openRoomModal}>
             <Text style={styles.inputLabel}>Số phòng và khách</Text>
             <Text>{`${rooms} phòng, ${adults} người lớn, ${children} trẻ em`}</Text>
           </TouchableOpacity>
-
-
         </View>
         <RoomSelectionModal
           visible={isRoomModalVisible}
@@ -185,10 +203,9 @@ const HotelBookingScreen = ({ navigation }) => {
           defaultChildren={children}
         />
 
-
         {/* Bộ lọc */}
         <View style={styles.inputRow}>
-          <Image source={require('../assets/loc.png')} />
+          <Image source={require("../assets/loc.png")} />
           <TouchableOpacity style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Bộ lọc</Text>
             <Text style={styles.filterText}>Chọn bộ lọc</Text>
@@ -196,10 +213,8 @@ const HotelBookingScreen = ({ navigation }) => {
         </View>
 
         {/* Tìm kiếm */}
-        <TouchableOpacity style={styles.searchButton}
-          onPress={handleSearch}>
+        <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
           <Text style={styles.searchButtonText}>Tìm kiếm</Text>
-
         </TouchableOpacity>
       </View>
 
@@ -217,7 +232,9 @@ const HotelBookingScreen = ({ navigation }) => {
             <View style={styles.recentSearchInfo}>
               <Text style={styles.hotelName}>Khách sạn Pullman Vũng Tàu</Text>
               <Text style={styles.dateInfo}>02/02/2022 - 04/02/2022</Text>
-              <Text style={styles.roomInfo}>2 phòng, 2 người lớn, 1 trẻ em</Text>
+              <Text style={styles.roomInfo}>
+                2 phòng, 2 người lớn, 1 trẻ em
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.recentSearchItem}>
@@ -238,30 +255,52 @@ const HotelBookingScreen = ({ navigation }) => {
           style={styles.wrapper}
           autoplay={true}
           autoplayTimeout={3}
-          dot={<View style={styles.customDot} />}  // Custom style for inactive dot
-          activeDot={<View style={styles.customActiveDot} />}  // Custom style for active dot
+          dot={<View style={styles.customDot} />} // Custom style for inactive dot
+          activeDot={<View style={styles.customActiveDot} />} // Custom style for active dot
           paginationStyle={{ bottom: -10 }} // Điều chỉnh vị trí của dot
         >
-          <Image source={require('../assets/promotion.png')} style={styles.promoImage} />
-          <Image source={require('../assets/promotion.png')} style={styles.promoImage} />
-          <Image source={require('../assets/promotion.png')} style={styles.promoImage} />
+          <Image
+            source={require("../assets/promotion.png")}
+            style={styles.promoImage}
+          />
+          <Image
+            source={require("../assets/promotion.png")}
+            style={styles.promoImage}
+          />
+          <Image
+            source={require("../assets/promotion.png")}
+            style={styles.promoImage}
+          />
         </Swiper>
       </View>
 
       {/* Popular Destinations */}
       <View style={styles.popularContainer}>
         <Text style={styles.sectionTitle}>Điểm đến phổ biến</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.destinationList}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.destinationList}
+        >
           <View style={styles.destinationItem}>
-            <Image source={require('../assets/hinh1.png')} style={styles.destinationImage} />
+            <Image
+              source={require("../assets/hinh1.png")}
+              style={styles.destinationImage}
+            />
             <Text style={styles.destinationText}>Tên điểm đến</Text>
           </View>
           <View style={styles.destinationItem}>
-            <Image source={require('../assets/hinh2.png')} style={styles.destinationImage} />
+            <Image
+              source={require("../assets/hinh2.png")}
+              style={styles.destinationImage}
+            />
             <Text style={styles.destinationText}>Tên điểm đến</Text>
           </View>
           <View style={styles.destinationItem}>
-            <Image source={require('../assets/hinh3.png')} style={styles.destinationImage} />
+            <Image
+              source={require("../assets/hinh3.png")}
+              style={styles.destinationImage}
+            />
             <Text style={styles.destinationText}>Tên điểm đến</Text>
           </View>
         </ScrollView>
@@ -273,33 +312,33 @@ const HotelBookingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 16,
   },
   logoText: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   searchContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 8,
     margin: 16,
     padding: 16,
     elevation: 3,
   },
   inputRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
+    flexDirection: "row",
+    alignItems: "flex-end",
     marginBottom: 16,
-    position: 'relative',
+    position: "relative",
   },
   inputRowOut: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 8,
     marginLeft: 18,
   },
@@ -308,32 +347,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   locationIcon: {
-    position: 'absolute',
-    top: 10,  // Di chuyển icon lên trên một chút
-    right: 0,  // Đặt icon vào góc phải
-    width: 20,  // Cài đặt kích thước icon
-    height: 20,  // Cài đặt kích thước icon
+    position: "absolute",
+    top: 10, // Di chuyển icon lên trên một chút
+    right: 0, // Đặt icon vào góc phải
+    width: 20, // Cài đặt kích thước icon
+    height: 20, // Cài đặt kích thước icon
   },
   inputLabel: {
     fontSize: 12,
-    color: '#888',
+    color: "#888",
   },
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: "#ddd",
     fontSize: 14,
     paddingVertical: 4,
-    color: '#333',
+    color: "#333",
   },
   dateContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 16,
   },
   dateRowItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     flex: 1,
   },
   dateInfo: {
@@ -341,46 +380,46 @@ const styles = StyleSheet.create({
   },
   dateLabel: {
     fontSize: 12,
-    color: '#888',
+    color: "#888",
   },
   dateValue: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   filterText: {
     fontSize: 14,
-    color: '#007bff',
+    color: "#007bff",
   },
   searchButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: "#007bff",
     paddingVertical: 12,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   searchButtonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   recentSearchContainer: {
     margin: 16,
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 8,
   },
   recentSearchItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
     marginBottom: 8,
     marginHorizontal: 4,
     borderRadius: 8,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -391,27 +430,27 @@ const styles = StyleSheet.create({
   },
   hotelName: {
     fontSize: 14,
-    color: '#333',
+    color: "#333",
   },
   dateInfo: {
     fontSize: 12,
-    color: '#888',
+    color: "#888",
   },
   roomInfo: {
     fontSize: 12,
-    color: '#333',
+    color: "#333",
   },
   promoContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     padding: 16,
     elevation: 2,
-    width: '100%',
-    position: 'relative',
+    width: "100%",
+    position: "relative",
     flex: 1,
   },
   promoImage: {
-    width: '100%',
-    height: '90%',
+    width: "100%",
+    height: "90%",
     borderRadius: 8,
     marginRight: 8,
   },
@@ -419,38 +458,38 @@ const styles = StyleSheet.create({
     height: 150,
   },
   dot: {
-    backgroundColor: 'rgba(0,0,0,.2)',
+    backgroundColor: "rgba(0,0,0,.2)",
     width: 8,
     height: 8,
     borderRadius: 4,
     margin: 3,
   },
   activeDot: {
-    backgroundColor: '#007bff',
+    backgroundColor: "#007bff",
     width: 8,
     height: 8,
     borderRadius: 4,
     margin: 3,
   },
   popularContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     marginTop: 16,
     padding: 16,
     elevation: 2,
     flex: 1,
-    position: 'relative',
-    width: '100%',
+    position: "relative",
+    width: "100%",
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   destinationList: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   destinationItem: {
-    alignItems: 'center',
+    alignItems: "center",
     width: 120, // Set a fixed width for each item to fit the image and text
     marginRight: 10, // Add space between items
   },
@@ -462,32 +501,32 @@ const styles = StyleSheet.create({
   },
   destinationText: {
     fontSize: 12,
-    color: '#333',
-    textAlign: 'center',
+    color: "#333",
+    textAlign: "center",
   },
   recentSearchHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 8,
   },
   customDot: {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Màu cho dot chưa chọn
-    width: 20,  // Chiều rộng của thanh ngang
-    height: 4,  // Chiều cao của thanh ngang
+    backgroundColor: "rgba(0, 0, 0, 0.2)", // Màu cho dot chưa chọn
+    width: 20, // Chiều rộng của thanh ngang
+    height: 4, // Chiều cao của thanh ngang
     borderRadius: 2,
     marginHorizontal: 4,
   },
   customActiveDot: {
-    backgroundColor: '#007bff', // Màu cho dot đang chọn
-    width: 20,  // Chiều rộng của thanh ngang
-    height: 4,  // Chiều cao của thanh ngang
+    backgroundColor: "#007bff", // Màu cho dot đang chọn
+    width: 20, // Chiều rộng của thanh ngang
+    height: 4, // Chiều cao của thanh ngang
     borderRadius: 2,
     marginHorizontal: 4,
   },
   headerBackground: {
-    width: '100%',
+    width: "100%",
     height: 100, // Adjust height as needed
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 });
 
