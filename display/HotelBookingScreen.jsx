@@ -17,6 +17,7 @@ import { fetchHotelsByLocation } from "../redux/slices/hotelSlice";
 import CheckinDateModal from "../component/CheckinDateModal";
 import NightsSelectionModal from "../component/NightsSelectionModal";
 import RoomSelectionModal from "../component/RoomSelectionModal";
+import { updateSearch } from '../redux/slices/searchSlice';
 const HotelBookingScreen = ({ navigation }) => {
   const [isRoomModalVisible, setRoomModalVisible] = useState(false);
 
@@ -80,11 +81,11 @@ const HotelBookingScreen = ({ navigation }) => {
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
 
-  const handleSearch = () => {
-    dispatch(fetchHotelsByLocation(location)).then(() => {
-      navigation.navigate("HotelListingScreen"); // Chuyển sang màn hình kết quả
-    });
-  };
+  // const handleSearch = () => {
+  //   dispatch(fetchHotelsByLocation(location)).then(() => {
+  //     navigation.navigate("HotelListingScreen"); // Chuyển sang màn hình kết quả
+  //   });
+  // };
 
   const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(1);
@@ -100,6 +101,21 @@ const HotelBookingScreen = ({ navigation }) => {
     setChildren(selectedChildren);
     closeRoomModal();
   };
+
+// Trong handleSearch
+const handleSearch = () => {
+  dispatch(updateSearch({
+    destination,
+    checkinDate,
+    nights,
+    rooms,
+    adults,
+    children,
+  }));
+  dispatch(fetchHotelsByLocation(destination)).then(() => {
+    navigation.navigate('HotelListingScreen');
+  });
+};
 
   return (
     <ScrollView style={styles.container}>

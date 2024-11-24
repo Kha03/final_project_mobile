@@ -1,56 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Thêm useState
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHotelsByLocation } from '../redux/slices/hotelSlice'; // Import từ file Redux slice
+import { fetchHotelsByLocation } from '../redux/slices/hotelSlice';
+import BookingHeader from "../component/BookingHeader";  // Đường dẫn phù hợp với project của bạn
+
 
 const HotelListingScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   // Lấy state từ Redux Store
   const { hotels, status, error } = useSelector((state) => state.hotels);
-  const location = route.params?.location || 'Vũng Tàu'; // Lấy location từ navigation params, nếu không có thì mặc định "Vũng Tàu"
+  const location = route.params?.location || 'Vũng Tàu';
+
+
 
   // Gọi API khi màn hình được render
   useEffect(() => {
     dispatch(fetchHotelsByLocation(location));
   }, [dispatch, location]);
 
+  
+
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconContainer}>
-          <Icon name="chevron-back" size={24} color="#fff" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{location}</Text>
-        <TouchableOpacity style={styles.iconContainer}>
-          <Icon name="ellipsis-horizontal" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.filterBar}>
-        <View style={styles.dateContainer}>
-          <Icon name="calendar-outline" size={20} color="#000" />
-          <Text style={styles.dateText}>02/02/2022</Text>
-          <Icon name="moon-outline" size={20} color="#000" style={styles.spacingIcon} />
-          <Text style={styles.iconText}>2</Text>
-          <Icon name="document-outline" size={20} color="#000" style={styles.spacingIcon} />
-          <Text style={styles.iconText}>2</Text>
-          <Icon name="person-outline" size={20} color="#000" style={styles.spacingIcon} />
-          <Text style={styles.iconText}>3</Text>
-        </View>
-        <View style={styles.filterButtons}>
-          <TouchableOpacity style={styles.filterButton}>
-            <Icon name="filter-outline" size={20} color="#000" />
-            <Text style={styles.filterText}>Lọc</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.popularButton}>
-            <Text style={styles.popularText}>Phổ biến nhất</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <BookingHeader />
 
-      {/* Hotel List */}
+  
+
+      {/* Danh sách khách sạn */}
       <ScrollView style={styles.listContainer}>
         {status === 'loading' && <ActivityIndicator size="large" color="#007AFF" />}
         {status === 'failed' && <Text style={styles.errorText}>Đã xảy ra lỗi: {error}</Text>}
@@ -63,7 +42,7 @@ const HotelListingScreen = ({ navigation, route }) => {
             <View style={styles.hotelDetails}>
               <Text style={styles.hotelName} numberOfLines={2}>{hotel.name}</Text>
               <View style={styles.ratingContainer}>
-                <Icon name="thumbs-up-outline" size={18} color="#4CAF50" />
+                <Image source={require('../assets/icons/Like.png')} style={{ width: 18, height: 18 }} />
                 <Text style={styles.ratingText}>{hotel.rating}</Text>
                 <Icon name="star" size={18} color="#FFD700" />
               </View>
@@ -72,6 +51,8 @@ const HotelListingScreen = ({ navigation, route }) => {
           </View>
         ))}
       </ScrollView>
+
+    
     </View>
   );
 };
@@ -194,7 +175,6 @@ const styles = StyleSheet.create({
   priceText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#1E88E5',
   },
   errorText: {
     textAlign: 'center',
