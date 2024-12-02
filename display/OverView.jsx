@@ -3,7 +3,8 @@ import { View, Text, ImageBackground, ScrollView, StyleSheet, TouchableOpacity }
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const HotelDetailScreen = () => {
+const HotelDetailScreen = ({ navigation, route }) => {
+  const { hotel } = route.params;
   const [showFullDescription, setShowFullDescription] = useState(false); // Trạng thái "Xem thêm"
 
   return (
@@ -11,28 +12,26 @@ const HotelDetailScreen = () => {
       {/* Header với hình ảnh background */}
 
       <ImageBackground
-        source={require('../assets/Carousel - Section.png')  } 
+        source={{ uri: hotel.image }}
         style={styles.headerBackground}
         imageStyle={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}
       >
         <View style={styles.headerContent}>
-          <TouchableOpacity style={styles.backButton}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={24} color="#fff" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Thông tin khách sạn</Text>
+          <Text style={styles.headerTitle}>{hotel.name}</Text>
         </View>
       </ImageBackground>
 
       {/* Nội dung chính */}
       <View style={styles.content}>
         {/* Tên khách sạn */}
-        <Text style={styles.hotelName}>Khách sạn Pullman Vũng Tàu</Text>
+        <Text style={styles.hotelName}>{hotel.name}</Text>
         <Text style={styles.hotelType}>Khách sạn</Text>
         <View style={styles.addressContainer}>
           <Icon name="location-on" size={16} color="#666" />
-          <Text style={styles.hotelAddress}>
-            15 Thi Sách, Phường Thắng Tam, Vũng Tàu, Bà Rịa - Vũng Tàu, Việt Nam
-          </Text>
+          <Text style={styles.hotelAddress}>{hotel.address}</Text>
         </View>
 
         {/* Đánh giá */}
@@ -98,11 +97,13 @@ const HotelDetailScreen = () => {
 
         {/* Giá và nút chọn phòng */}
         <View style={styles.footer}>
-          <Text style={styles.price}>2.000.000 ₫</Text>
+          <Text style={styles.price}>2.000.000 đ</Text>
           <Text style={styles.priceNote}>Đã bao gồm thuế</Text>
           <Button
             title="Chọn phòng"
             buttonStyle={styles.chooseRoomButton}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate('ChooseRoom')}
           />
         </View>
       </View>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   },
   // Header với background
   headerBackground: {
-    width: '100%',
+    width: '104%',
     height: 250,
     justifyContent: 'flex-end',
     paddingHorizontal: 16,
@@ -231,11 +232,14 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'center',
     marginVertical: 16,
+    paddingTop: 24, // Thêm padding-top để tạo khoảng cách trên
   },
   price: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: '1A94FF',
+    marginBottom: 5,
+    textAlign: 'right'
   },
   priceNote: {
     fontSize: 12,
@@ -247,6 +251,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '100%',
     paddingVertical: 12,
+  },
+  buttonContainer: {
+    width: '90%', // Chiều rộng 90% cho nút
+    alignSelf: 'center', // Căn giữa nút
   },
 });
 

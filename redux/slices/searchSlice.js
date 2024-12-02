@@ -4,7 +4,7 @@ const initialState = {
   destination: '',
   checkinDate: '',
   nights: 1,
-  rooms: 1,
+  rooms: 2,
   adults: 1,
   children: 0,
 };

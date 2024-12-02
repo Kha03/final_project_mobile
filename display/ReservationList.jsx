@@ -2,7 +2,7 @@ import { Image, ScrollView, Text, View } from "react-native";
 import styles from "./style/style";
 import ReserVationItem from "../component/ReservationItem";
 import ReserVationEmpty from "../component/ReservationEmty";
-const ReservationList = () => {
+const ReservationList = ({navigation}) => {
   const emty = true;
   return (
     <ScrollView
@@ -19,8 +19,8 @@ const ReservationList = () => {
             01/2022
           </Text>
           <View style={{ gap: 12 }}>
-            <ReserVationItem reservation={{ status: "processing" }} />
-            <ReserVationItem reservation={{ status: "success" }} />
+            <ReserVationItem reservation={{ status: "processing" }} onList={() => navigation.navigate('OrderConfirmed')} />
+            <ReserVationItem reservation={{ status: "success" }} onList={() => navigation.navigate('OrderConfirmed')} />
             <ReserVationItem reservation={{ status: "fail" }} />
             <ReserVationItem reservation={{ status: "cancel" }} />
           </View>

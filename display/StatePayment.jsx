@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import styles from "./style/style";
 import { Pressable } from "react-native";
-const StatePayment = ({ route }) => {
+const StatePayment = ({ route , navigation }) => {
   const { state } = route.params || {};
   return (
     <View
@@ -87,6 +87,7 @@ const StatePayment = ({ route }) => {
               </Text>
             </Pressable>
             <Pressable
+              onPress={() => navigation.navigate("ReservationList")}
               style={({ pressed }) => [
                 styles.submitButton,
                 { opacity: pressed ? 0.8 : 1, flex: 1 },
