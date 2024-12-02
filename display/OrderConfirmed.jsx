@@ -17,33 +17,33 @@ data = [
   {
     id: 1,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
   {
     id: 3,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
-  {
-    id: 4,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 5,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 6,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 7,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
+  // {
+  //   id: 4,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 5,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 6,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 7,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
 ];
 const ExpandableSection = ({
   title,
@@ -180,7 +180,7 @@ const OrderConfirmed = ({  route  }) => {
               { fontSize: 16, lineHeight: 18, color: "#1A94FF" },
             ]}
           >
-            8.000.000 ₫
+            8.800.000 ₫
           </Text>
         </View>
       </View>

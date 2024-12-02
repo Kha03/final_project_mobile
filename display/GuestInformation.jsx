@@ -189,7 +189,7 @@ const GuestInformation = ({ navigation }) => {
       <View style={[styles.containerRow, { marginTop: 8 }]}>
         <Text style={styles.text}>Tổng giá tiền</Text>
         <View style={{ flexDirection: "row" }}>
-          <Text style={[styles.text, { color: "#1A94FF" }]}>1.000.000đ </Text>
+          <Text style={[styles.text, { color: "#1A94FF" }]}>8.800.000đ </Text>
           <Image source={require("../assets/icons/warn.png")} />
         </View>
       </View>

@@ -53,7 +53,7 @@ const DestinationModal = ({ visible, onClose, onSelect }) => {
             <Text style={styles.sectionTitle}>Điểm đến phổ biến</Text>
           </View>
           <View style={styles.popularDestinations}>
-            {['Vũng Tàu', 'Hồ Chí Minh, Việt Nam', 'Sapa, Việt Nam'].map((item, index) => (
+            {['Vũng Tàu', 'Hồ Chí Minh', 'Sapa'].map((item, index) => (
               <TouchableOpacity
                 key={index}
                 onPress={() => handleSelectItem(item)}

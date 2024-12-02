@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: 16,
+    paddingTop: 12,
   },
   hotelItem: {
     flexDirection: 'row',
