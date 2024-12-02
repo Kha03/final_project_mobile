@@ -1,4 +1,12 @@
-import { FlatList, Image, Modal, Pressable, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Modal,
+  Pressable,
+  Text,
+  View,
+  Alert,
+} from "react-native";
 import styles from "../display/style/style";
 import RoomPriceItem from "./RoomPriceItem";
 data = [
@@ -33,7 +41,38 @@ data = [
     price: "3.600.000 ₫",
   },
 ];
-const ModalPayment = ({ show, setModal, onCheckOut }) => {
+const ModalPayment = ({ show, setModal, phone, navigation }) => {
+  const sendOtp = async () => {
+    try {
+      console.log("sendOtp");
+      const response = await fetch("http://localhost:3000/send-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneNumber: phone }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+      if (result.request_id) {
+        Alert.alert("Thành công", "Mã OTP đã được gửi.");
+        setModal(false);
+        // Sử dụng request_id lấy từ response API
+        navigation.navigate("VerifyOTPScreen", {
+          requestId: result.request_id,
+        });
+        return true;
+      } else {
+        Alert.alert("Thất bại", "Không thể gửi OTP.");
+        return false; // Gửi OTP không thành công
+      }
+    } catch (error) {
+      Alert.alert("Lỗi!", "Không thể kết nối với máy chủ. Vui lòng thử lại.");
+      return false;
+    }
+  };
+
   return (
     <Modal transparent={true} visible={show} animationType="slide">
       <View style={styles.modalContainer}>
@@ -91,7 +130,7 @@ const ModalPayment = ({ show, setModal, onCheckOut }) => {
           </View>
           <View style={{ marginTop: 8, paddingBottom: 10 }}>
             <Pressable
-              onPress={onCheckOut}
+              onPress={sendOtp}
               style={({ pressed }) => [
                 styles.submitButton,
                 { opacity: pressed ? 0.8 : 1 },

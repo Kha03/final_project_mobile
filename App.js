@@ -13,17 +13,27 @@ import { Provider } from "react-redux";
 import ChooseRoom from "./display/ChooseRoom";
 import NoRoomFound from "./display/NoRoomFound";
 import ChatScreen from "./display/ChatScreen";
+import VerifyOTPScreen from "./display/VerifyOTPScreen";
 const Stack = createNativeStackNavigator();
 function RootStack() {
   return (
     <Provider store={store}>
-      <Stack.Navigator initialRouteName="HotelBookingScreen">
+      <Stack.Navigator initialRouteName="GuestInformation">
         <Stack.Screen name="GuestInformation" component={GuestInformation} />
         <Stack.Screen name="PaymentCheckout" component={PaymentCheckout} />
         <Stack.Screen name="StatePayment" component={StatePayment} />
         <Stack.Screen name="ReservationList" component={ReservationList} />
         <Stack.Screen name="OrderConfirmed" component={OrderConfirmed} />
-        <Stack.Screen name="ChooseRoom" component={ChooseRoom}  options={{ headerShown: false }} />
+        <Stack.Screen
+          name="VerifyOTPScreen"
+          component={VerifyOTPScreen}
+          options={{ title: "Xác Thực OTP" }}
+        />
+        <Stack.Screen
+          name="ChooseRoom"
+          component={ChooseRoom}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="NoRoomFound" component={NoRoomFound} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen

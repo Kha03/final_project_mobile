@@ -40,7 +40,10 @@ export const fetchGeminiResponse = async (message) => {
 
     return "Không tìm thấy phản hồi.";
   } catch (error) {
-    console.error("Error fetching Gemini response:", error?.response?.data || error);
+    console.error(
+      "Error fetching Gemini response:",
+      error?.response?.data || error
+    );
     return "Có lỗi xảy ra, vui lòng thử lại.";
   }
 };

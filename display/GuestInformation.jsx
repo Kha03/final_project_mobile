@@ -1,10 +1,18 @@
 import { useState } from "react";
-import { Image, Pressable, ScrollView, Switch, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Switch,
+  Text,
+  View,
+  Alert,
+} from "react-native";
 import styles from "./style/style";
 import InputFieldInfo from "../component/InputFieldInfo";
 import ModalPayment from "../component/ModalPayment";
 
-const GuestInformation = ({navigation}) => {
+const GuestInformation = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
@@ -48,9 +56,11 @@ const GuestInformation = ({navigation}) => {
     } else {
       setTenError("");
     }
-    const phoneRegex = /^[0-9]{10}$/;
+    const phoneRegex = /^84[0-9]{9}$/;
     if (!soDienThoai || !phoneRegex.test(soDienThoai)) {
-      setSoDienThoaiError("Vui lòng điền thông tin tại đây");
+      setSoDienThoaiError(
+        "Vui lòng điền số điện thoại hợp lệ bao gồm mã quốc gia (84)"
+      );
       isValid = false;
     } else {
       setSoDienThoaiError("");
@@ -87,6 +97,7 @@ const GuestInformation = ({navigation}) => {
         setSoDienThoaiLuuTruError("");
       }
     }
+
     return isValid && setModalVisible(true);
   };
 
@@ -210,8 +221,11 @@ const GuestInformation = ({navigation}) => {
           </Text>
         </Pressable>
       </View>
-      <ModalPayment show={isModalVisible} setModal={setModalVisible} 
-      onCheckOut={() => navigation.navigate('PaymentCheckout')}
+      <ModalPayment
+        show={isModalVisible}
+        setModal={setModalVisible}
+        phone={soDienThoai}
+        navigation={navigation}
       />
     </ScrollView>
   );
