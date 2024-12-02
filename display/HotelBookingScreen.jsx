@@ -18,6 +18,7 @@ import CheckinDateModal from "../component/CheckinDateModal";
 import NightsSelectionModal from "../component/NightsSelectionModal";
 import RoomSelectionModal from "../component/RoomSelectionModal";
 import { updateSearch } from '../redux/slices/searchSlice';
+import { fetchChatGPTResponse } from '../api';
 const HotelBookingScreen = ({ navigation }) => {
   const [isRoomModalVisible, setRoomModalVisible] = useState(false);
 
@@ -102,20 +103,21 @@ const HotelBookingScreen = ({ navigation }) => {
     closeRoomModal();
   };
 
-// Trong handleSearch
-const handleSearch = () => {
-  dispatch(updateSearch({
-    destination,
-    checkinDate,
-    nights,
-    rooms,
-    adults,
-    children,
-  }));
-  dispatch(fetchHotelsByLocation(destination)).then(() => {
-    navigation.navigate('HotelListingScreen');
-  });
-};
+
+  // Trong handleSearch
+  const handleSearch = () => {
+    dispatch(updateSearch({
+      destination,
+      checkinDate,
+      nights,
+      rooms,
+      adults,
+      children,
+    }));
+    dispatch(fetchHotelsByLocation(destination)).then(() => {
+      navigation.navigate('HotelListingScreen');
+    });
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -126,9 +128,12 @@ const handleSearch = () => {
       >
         <View style={styles.header}>
           <Text style={styles.logoText}>Logo</Text>
-          <Image source={require("../assets/_button.png")} />
+          <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
+            <Image source={require("../assets/_button.png")} style={{ width: 50, height: 50 }} />
+          </TouchableOpacity>
         </View>
       </ImageBackground>
+
 
       {/* Search Box */}
       <View style={styles.searchContainer}>
@@ -159,8 +164,8 @@ const handleSearch = () => {
                 Thứ{" "}
                 {checkinDate
                   ? new Date(
-                      checkinDate.split("/").reverse().join("-")
-                    ).getDay()
+                    checkinDate.split("/").reverse().join("-")
+                  ).getDay()
                   : ""}
                 , {checkinDate || "Chưa chọn"}
               </Text>

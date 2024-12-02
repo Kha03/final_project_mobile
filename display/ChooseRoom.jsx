@@ -15,31 +15,35 @@ import { stateMap, statusTextMap } from "../util/statePayment";
 import styles from "./style/style";
 import HotelRoomCard from "../component/HotelRoomCard";
 import RoomDetailModal from "../component/RoomDetailModal";
-
-const ChooseRoom = () => {
+import BookingHeader from '../component/BookingHeader';
+const ChooseRoom = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalVisible = () => {
     setIsModalVisible(!isModalVisible);
   };
   return (
+    
     <ScrollView style={{ backgroundColor: "#F5F5FA" }}>
+       <BookingHeader />
       <View style={[styles.container, { marginBottom: 8, rowGap: 12 }]}>
         <Text style={[styles.text, { fontSize: 16 }]}>
           Superior 2 Twin Beds City View
         </Text>
-        <HotelRoomCard setModal={handleModalVisible} />
-        <HotelRoomCard setModal={handleModalVisible} />
-        <HotelRoomCard setModal={handleModalVisible} />
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')} />
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')}/>
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')}/>
       </View>
       <View style={[styles.container, { marginBottom: 8, rowGap: 12 }]}>
         <Text style={[styles.text, { fontSize: 16 }]}>
           Superior 2 Twin Beds City View
         </Text>
-        <HotelRoomCard setModal={handleModalVisible} />
-        <HotelRoomCard setModal={handleModalVisible} />
-        <HotelRoomCard setModal={handleModalVisible} />
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')}/>
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')} />
+        <HotelRoomCard setModal={handleModalVisible} onBookRoom1={() => navigation.navigate('GuestInformation')}/>
       </View>
-      <RoomDetailModal visible={isModalVisible} onClose={handleModalVisible} />
+      <RoomDetailModal visible={isModalVisible} onClose={handleModalVisible}
+       onBookRoom={() => navigation.navigate('GuestInformation')}
+      />
     </ScrollView>
   );
 };

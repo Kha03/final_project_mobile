@@ -4,7 +4,7 @@ import styles from "./style/style";
 import InputFieldInfo from "../component/InputFieldInfo";
 import ModalPayment from "../component/ModalPayment";
 
-const GuestInformation = () => {
+const GuestInformation = ({navigation}) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
@@ -210,7 +210,9 @@ const GuestInformation = () => {
           </Text>
         </Pressable>
       </View>
-      <ModalPayment show={isModalVisible} setModal={setModalVisible} />
+      <ModalPayment show={isModalVisible} setModal={setModalVisible} 
+      onCheckOut={() => navigation.navigate('PaymentCheckout')}
+      />
     </ScrollView>
   );
 };
