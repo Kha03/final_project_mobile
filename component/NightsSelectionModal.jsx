@@ -14,7 +14,8 @@ const NightsSelectionModal = ({ visible, onClose, onConfirm, currentDate }) => {
   };
 
   const calculateCheckoutDate = (nights) => {
-    const checkinDate = new Date(currentDate);
+    const formattedDate = currentDate.split('/').reverse().join('-'); // Chuyển DD/MM/YYYY thành YYYY-MM-DD
+    const checkinDate = new Date(formattedDate);
     checkinDate.setDate(checkinDate.getDate() + nights);
     return checkinDate.toLocaleDateString('vi-VN'); // Định dạng ngày tháng kiểu Việt Nam
   };

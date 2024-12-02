@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Pressable, Image } from "react-native";
 import styles from "../display/style/style";
 
-const HotelRoomCard = ({ setModal }) => {
+const HotelRoomCard = ({ setModal, onBookRoom1 }) => {
   return (
     <View
       style={[
@@ -99,6 +99,7 @@ const HotelRoomCard = ({ setModal }) => {
           / phòng / đêm
         </Text>
         <Pressable
+           onPress={onBookRoom1}
           style={({ pressed }) => [
             styles.submitButton,
             {

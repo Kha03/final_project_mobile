@@ -33,7 +33,7 @@ data = [
     price: "3.600.000 ₫",
   },
 ];
-const ModalPayment = ({ show, setModal }) => {
+const ModalPayment = ({ show, setModal, onCheckOut }) => {
   return (
     <Modal transparent={true} visible={show} animationType="slide">
       <View style={styles.modalContainer}>
@@ -91,7 +91,7 @@ const ModalPayment = ({ show, setModal }) => {
           </View>
           <View style={{ marginTop: 8, paddingBottom: 10 }}>
             <Pressable
-              onPress={() => setModal(false)}
+              onPress={onCheckOut}
               style={({ pressed }) => [
                 styles.submitButton,
                 { opacity: pressed ? 0.8 : 1 },

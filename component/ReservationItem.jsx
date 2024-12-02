@@ -1,11 +1,13 @@
 import { Image, Pressable, Text, View } from "react-native";
 import styles from "../display/style/style";
 import { stateMap, statusTextMap } from "../util/statePayment";
-const ReserVationItem = ({ reservation }) => {
+const ReserVationItem = ({ reservation, onList }) => {
   const statusText = statusTextMap[reservation.status] || "Đang xử lý";
   const stateStyle = stateMap[reservation.status] || styles.statePayment;
   return (
-    <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}>
+    <Pressable 
+    onPress={onList}
+    style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}>
       <View style={styles.Reservation}>
         <Text style={[stateStyle]}>{statusText}</Text>
         <View

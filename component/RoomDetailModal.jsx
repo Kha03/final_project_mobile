@@ -13,7 +13,7 @@ import styles from "../display/style/style";
 import Swiper from "react-native-swiper";
 import ImageViewer from "react-native-image-zoom-viewer";
 
-const RoomDetailModal = ({ visible, onClose }) => {
+const RoomDetailModal = ({ visible, onClose, onBookRoom }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const images = [
@@ -377,7 +377,7 @@ const RoomDetailModal = ({ visible, onClose }) => {
               </View>
               <View style={{ marginTop: 8, paddingBottom: 10 }}>
                 <Pressable
-                  onPress={onClose}
+                  onPress={onBookRoom}
                   style={({ pressed }) => [
                     styles.submitButton,
                     { opacity: pressed ? 0.8 : 1 },
