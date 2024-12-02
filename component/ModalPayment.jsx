@@ -45,6 +45,7 @@ const ModalPayment = ({ show, setModal, phone, navigation }) => {
   const sendOtp = async () => {
     try {
       console.log("sendOtp");
+      navigation.navigate("VerifyOTPScreen");
       const response = await fetch("http://localhost:3000/send-otp", {
         method: "POST",
         headers: {
@@ -59,9 +60,9 @@ const ModalPayment = ({ show, setModal, phone, navigation }) => {
         Alert.alert("Thành công", "Mã OTP đã được gửi.");
         setModal(false);
         // Sử dụng request_id lấy từ response API
-        navigation.navigate("VerifyOTPScreen", {
-          requestId: result.request_id,
-        });
+        // navigation.navigate("VerifyOTPScreen", {
+        //   requestId: result.request_id,
+        // });
         return true;
       } else {
         Alert.alert("Thất bại", "Không thể gửi OTP.");

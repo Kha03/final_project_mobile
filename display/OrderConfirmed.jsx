@@ -89,14 +89,11 @@ const ExpandableSection = ({
   </View>
 );
 
-const OrderConfirmed = ({  route  }) => {
+const OrderConfirmed = ({ route }) => {
   const { status } = route.params;
-  
+
   const statusText = statusTextMap[status] || "Đang xử lý";
   const stateStyle = stateMap[status] || styles.statePayment;
-
-  
-
 
   const [isPayInfoVisible, setPayInfoVisible] = useState(false);
   const payInfoHeight = useRef(new Animated.Value(0)).current;
@@ -160,7 +157,10 @@ const OrderConfirmed = ({  route  }) => {
 
         <View style={[styles.containerRow, styles.paymentCusInfo]}>
           <Text
-            style={[styles.text, { fontWeight: "regular", lineHeight: 18, paddingLeft: 15 }]}
+            style={[
+              styles.text,
+              { fontWeight: "regular", lineHeight: 18, paddingLeft: 15 },
+            ]}
           >
             Thuế và phí
           </Text>
@@ -170,7 +170,10 @@ const OrderConfirmed = ({  route  }) => {
         </View>
         <View style={[styles.containerRow, styles.paymentCusInfo]}>
           <Text
-            style={[styles.text, { fontWeight: "regular", lineHeight: 18, paddingLeft: 15 }]}
+            style={[
+              styles.text,
+              { fontWeight: "regular", lineHeight: 18, paddingLeft: 15 },
+            ]}
           >
             Tổng cộng
           </Text>
