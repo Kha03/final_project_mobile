@@ -5,33 +5,33 @@ data = [
   {
     id: 1,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
   {
     id: 3,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
-  {
-    id: 4,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 5,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 6,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 7,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
+  // {
+  //   id: 4,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 5,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 6,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 7,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
 ];
 const ModalPayment = ({ show, setModal, onCheckOut }) => {
   return (
@@ -75,12 +75,12 @@ const ModalPayment = ({ show, setModal, onCheckOut }) => {
           >
             <Text style={styles.text}>Thuế và phí</Text>
             <View style={{ flexDirection: "row" }}>
-              <Text style={[styles.text]}>8.000.000đ </Text>
+              <Text style={[styles.text]}>800.000đ </Text>
             </View>
           </View>
           <View style={[styles.containerRow, { marginTop: 8 }]}>
             <Text style={styles.text}>Tổng giá tiền</Text>
-            <Text style={[styles.text, { color: "#1A94FF" }]}>8.000.000đ</Text>
+            <Text style={[styles.text, { color: "#1A94FF" }]}>8.800.000đ</Text>
           </View>
           <View style={{ marginTop: 4 }}>
             <Text

@@ -123,7 +123,7 @@ const RoomInfoPayment = ({ code }) => {
               Nhận phòng
             </Text>
             <Text style={[styles.text]}>
-              Thứ Tư, 02/02/2022 (15:00 - 03:00)
+              Thứ Năm, 05/12/2024 (15:00 - 03:00)
             </Text>
           </View>
         </View>
@@ -149,7 +149,7 @@ const RoomInfoPayment = ({ code }) => {
             >
               Trả phòng
             </Text>
-            <Text style={[styles.text]}>Thứ Sáu, 04/02/2022 (trước 11:00)</Text>
+            <Text style={[styles.text]}>Thứ Bảy, 07/12/2024 (trước 11:00)</Text>
           </View>
         </View>
         <View style={styles.paymentContentBody}>

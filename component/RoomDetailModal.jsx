@@ -327,7 +327,7 @@ const RoomDetailModal = ({ visible, onClose, onBookRoom }) => {
                   <Text style={[styles.text, { fontWeight: "regular" }]}>
                     Ngày
                   </Text>
-                  <Text style={[styles.text]}>02/02/2022 - 04/02/2022</Text>
+                  <Text style={[styles.text]}>05/12/2024 - 07/12/2024</Text>
                 </View>
                 <View style={styles.containerRow}>
                   <Text style={[styles.text, { fontWeight: "regular" }]}>
@@ -339,13 +339,13 @@ const RoomDetailModal = ({ visible, onClose, onBookRoom }) => {
                   <Text style={[styles.text, { fontWeight: "regular" }]}>
                     2 Phòng/đêm
                   </Text>
-                  <Text style={[styles.text]}>3.600.000 ₫</Text>
+                  <Text style={[styles.text]}>4.000.000 ₫</Text>
                 </View>
                 <View style={styles.containerRow}>
                   <Text style={[styles.text, { fontWeight: "regular" }]}>
                     Giá tiền cho 2 đêm
                   </Text>
-                  <Text style={[styles.text]}>7.200.000 ₫</Text>
+                  <Text style={[styles.text]}>8.000.000 ₫</Text>
                 </View>
                 <View style={styles.containerRow}>
                   <Text style={[styles.text, { fontWeight: "regular" }]}>
@@ -365,7 +365,7 @@ const RoomDetailModal = ({ visible, onClose, onBookRoom }) => {
               <View style={[styles.containerRow, { marginTop: 8 }]}>
                 <Text style={styles.text}>Tổng giá tiền</Text>
                 <Text style={[styles.text, { color: "#1A94FF" }]}>
-                  8.000.000đ
+                  8.800.000đ
                 </Text>
               </View>
               <View style={{ marginTop: 4 }}>
