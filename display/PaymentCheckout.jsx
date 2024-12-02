@@ -16,33 +16,33 @@ data = [
   {
     id: 1,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
   {
     id: 3,
     des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
+    price: "4.000.000 ₫",
   },
-  {
-    id: 4,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 5,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 6,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
-  {
-    id: 7,
-    des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
-    price: "3.600.000 ₫",
-  },
+  // {
+  //   id: 4,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 5,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 6,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
+  // {
+  //   id: 7,
+  //   des: "1 Pullman Vũng Tàu, Phòng Superior, 2 giường đơn, quang cảnh thành phố ",
+  //   price: "3.600.000 ₫",
+  // },
 ];
 const PaymentCheckout = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -104,8 +104,8 @@ const PaymentCheckout = ({ navigation }) => {
             <Text
               style={[styles.text, { fontWeight: "regular", lineHeight: 18 }]}
             >
-              Áp dụng chính sách hủy phòng Miễn phí hủy trước 26-thg 5-2022
-              14:00. Nếu hủy hoặc sửa đổi sau 26-thg 5-2022 14:01, phí hủy đặt
+              Áp dụng chính sách hủy phòng Miễn phí hủy trước 4-thg 12-2024
+              14:00. Nếu hủy hoặc sửa đổi sau 5-thg 12-2024 14:01, phí hủy đặt
               phòng sẽ được tính.
             </Text>
           </View>
@@ -167,7 +167,7 @@ const PaymentCheckout = ({ navigation }) => {
                 Tổng cộng
               </Text>
               <Text style={[styles.text, { fontSize: 16, lineHeight: 18 }]}>
-                8.000.000 ₫
+                8.800.000 ₫
               </Text>
             </View>
           </View>
@@ -175,7 +175,7 @@ const PaymentCheckout = ({ navigation }) => {
             <View style={[styles.containerRow, { marginTop: 8 }]}>
               <Text style={styles.text}>Tổng giá tiền</Text>
               <Text style={[styles.text, { color: "#1A94FF" }]}>
-                8.000.000đ
+                8.800.000đ
               </Text>
             </View>
             <View style={{ marginTop: 4 }}>

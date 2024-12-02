@@ -54,13 +54,14 @@ const StatePayment = ({ route , navigation }) => {
           >
             Tổng tiền
           </Text>
-          <Text style={[styles.text, { lineHeight: 18 }]}>1.186.000 ₫</Text>
+          <Text style={[styles.text, { lineHeight: 18 }]}>8.800.000 ₫</Text>
         </View>
       </View>
       <View style={[styles.containerRow, { marginTop: 12, gap: 8 }]}>
         {state ? (
           <>
             <Pressable
+              onPress={() => navigation.navigate("HotelBookingScreen")}
               style={({ pressed }) => [
                 styles.submitButton,
                 {
@@ -110,6 +111,7 @@ const StatePayment = ({ route , navigation }) => {
           </>
         ) : (
           <Pressable
+            onPress={() => navigation.navigate("PaymentCheckout")}
             style={({ pressed }) => [
               styles.submitButton,
               { opacity: pressed ? 0.8 : 1, flex: 1 },

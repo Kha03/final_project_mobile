@@ -229,7 +229,7 @@ const HotelBookingScreen = ({ navigation }) => {
           <Image source={require("../assets/loc.png")} />
           <TouchableOpacity style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Bộ lọc</Text>
-            <Text style={styles.filterText}>Chọn bộ lọc</Text>
+            <Text style={styles.filterText}>2.000.000 đ - 2.500.000 , 5 sao  </Text>
           </TouchableOpacity>
         </View>
 
