@@ -9,8 +9,8 @@ import {
 } from "react-native";
 
 const VerifyOTPScreen = ({ route, navigation }) => {
-  const { requestId } = route.params;
-  // const requestId = "60f7b7b1-7b7b-4b7b-8b7b-9b7b7b7b7b7b";
+  // const { requestId } = route.params;
+  const requestId = "60f7b7b1-7b7b-4b7b-8b7b-9b7b7b7b7b7b";
   const [otpCode, setOtpCode] = useState("");
 
   const handleVerifyOtp = async () => {
@@ -33,7 +33,7 @@ const VerifyOTPScreen = ({ route, navigation }) => {
       console.log(result);
       if (result.status === "success") {
         Alert.alert("Xác thực thành công!", "Bạn đã xác thực thành công.");
-        navigation.navigate("PaymentCheckout");
+        //  navigation.navigate("PaymentCheckout");
       } else {
         Alert.alert(
           "Xác thực thất bại!",

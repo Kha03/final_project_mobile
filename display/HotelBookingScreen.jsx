@@ -17,8 +17,8 @@ import { fetchHotelsByLocation } from "../redux/slices/hotelSlice";
 import CheckinDateModal from "../component/CheckinDateModal";
 import NightsSelectionModal from "../component/NightsSelectionModal";
 import RoomSelectionModal from "../component/RoomSelectionModal";
-import { updateSearch } from '../redux/slices/searchSlice';
-import { fetchChatGPTResponse } from '../api';
+import { updateSearch } from "../redux/slices/searchSlice";
+import { fetchChatGPTResponse } from "../api";
 const HotelBookingScreen = ({ navigation }) => {
   const [isRoomModalVisible, setRoomModalVisible] = useState(false);
 
@@ -103,19 +103,20 @@ const HotelBookingScreen = ({ navigation }) => {
     closeRoomModal();
   };
 
-
   // Trong handleSearch
   const handleSearch = () => {
-    dispatch(updateSearch({
-      destination,
-      checkinDate,
-      nights,
-      rooms,
-      adults,
-      children,
-    }));
+    dispatch(
+      updateSearch({
+        destination,
+        checkinDate,
+        nights,
+        rooms,
+        adults,
+        children,
+      })
+    );
     dispatch(fetchHotelsByLocation(destination)).then(() => {
-      navigation.navigate('HotelListingScreen');
+      navigation.navigate("HotelListingScreen");
     });
   };
 
@@ -128,12 +129,14 @@ const HotelBookingScreen = ({ navigation }) => {
       >
         <View style={styles.header}>
           <Text style={styles.logoText}>Logo</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-            <Image source={require("../assets/_button.png")} style={{ width: 50, height: 50 }} />
+          <TouchableOpacity onPress={() => navigation.navigate("ChatScreen")}>
+            <Image
+              source={require("../assets/_button.png")}
+              style={{ width: 50, height: 50 }}
+            />
           </TouchableOpacity>
         </View>
       </ImageBackground>
-
 
       {/* Search Box */}
       <View style={styles.searchContainer}>
@@ -164,8 +167,8 @@ const HotelBookingScreen = ({ navigation }) => {
                 Thứ{" "}
                 {checkinDate
                   ? new Date(
-                    checkinDate.split("/").reverse().join("-")
-                  ).getDay()
+                      checkinDate.split("/").reverse().join("-")
+                    ).getDay()
                   : ""}
                 , {checkinDate || "Chưa chọn"}
               </Text>
@@ -229,7 +232,9 @@ const HotelBookingScreen = ({ navigation }) => {
           <Image source={require("../assets/loc.png")} />
           <TouchableOpacity style={styles.inputGroup}>
             <Text style={styles.inputLabel}>Bộ lọc</Text>
-            <Text style={styles.filterText}>2.000.000 đ - 2.500.000 , 5 sao  </Text>
+            <Text style={styles.filterText}>
+              2.000.000 đ - 2.500.000 , 5 sao{" "}
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -308,21 +313,21 @@ const HotelBookingScreen = ({ navigation }) => {
               source={require("../assets/hinh1.png")}
               style={styles.destinationImage}
             />
-            <Text style={styles.destinationText}>Tên điểm đến</Text>
+            <Text style={styles.destinationText}>Vũng Tàu</Text>
           </View>
           <View style={styles.destinationItem}>
             <Image
               source={require("../assets/hinh2.png")}
               style={styles.destinationImage}
             />
-            <Text style={styles.destinationText}>Tên điểm đến</Text>
+            <Text style={styles.destinationText}>Đà Lạt</Text>
           </View>
           <View style={styles.destinationItem}>
             <Image
               source={require("../assets/hinh3.png")}
               style={styles.destinationImage}
             />
-            <Text style={styles.destinationText}>Tên điểm đến</Text>
+            <Text style={styles.destinationText}>Hà Nội</Text>
           </View>
         </ScrollView>
       </View>
