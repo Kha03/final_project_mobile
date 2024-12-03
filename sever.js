@@ -6,8 +6,8 @@ const cors = require("cors");
 const app = express();
 
 const vonage = new Vonage({
-  apiKey: "cf10d79f",
-  apiSecret: "CtJ72g6JFouprCvz",
+  apiKey: "b36e2b34",
+  apiSecret: "XlghbwWKBWolo8Cc",
 });
 
 // Bật CORS cho tất cả các yêu cầu
