@@ -16,7 +16,7 @@ const ReservationList = ({ navigation }) => {
       {emty ? (
         <>
           <Text style={[styles.text, { marginVertical: 12, fontSize: 16 }]}>
-            01/2022
+            01/2024
           </Text>
           <View style={{ gap: 12 }}>
             <ReserVationItem
@@ -45,7 +45,7 @@ const ReservationList = ({ navigation }) => {
             />
           </View>
           <Text style={[styles.text, { marginVertical: 12, fontSize: 16 }]}>
-            01/2022
+            01/2024
           </Text>
           <View style={{ gap: 12 }}>
             <ReserVationItem reservation={{ status: "processing" }} />

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GEMINI_API_KEY = "AIzaSyCe6BLKmeeRz5C-r12Z0y6siu35Mx0OVdw"; // Thay bằng API Key chính xác
+const GEMINI_API_KEY = "AIzaSyCe6BLKmeeRz5C-r12Z0y6siu35Mx0OVdw";
 
 export const fetchGeminiResponse = async (message) => {
   try {
@@ -13,7 +13,7 @@ export const fetchGeminiResponse = async (message) => {
           {
             parts: [
               {
-                text: message, // Nội dung tin nhắn từ người dùng
+                text: message,
               },
             ],
           },
@@ -26,7 +26,6 @@ export const fetchGeminiResponse = async (message) => {
       }
     );
 
-    // Đảm bảo lấy dữ liệu từ response đúng cách
     if (
       response.data &&
       response.data.candidates &&

@@ -10,7 +10,6 @@ const vonage = new Vonage({
   apiSecret: "XlghbwWKBWolo8Cc",
 });
 
-// Bật CORS cho tất cả các yêu cầu
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -26,7 +25,6 @@ app.post("/send-otp", (req, res) => {
     .then((resp) => {
       if (resp.request_id) {
         console.log(resp.request_id);
-        // Trả về request_id cho phía client
         res.json({ request_id: resp.request_id });
       }
     })
@@ -43,10 +41,8 @@ app.post("/verify-otp", (req, res) => {
     .then((resp) => {
       console.log(resp);
       if (resp.status === "0") {
-        // Xác thực thành công
         res.json({ status: "success" });
       } else {
-        // Xác thực thất bại
         res.json({ status: "fail", error_text: resp.error_text });
       }
     })
