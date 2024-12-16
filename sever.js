@@ -7,7 +7,7 @@ const app = express();
 
 const vonage = new Vonage({
   apiKey: "b36e2b34",
-  apiSecret: "XlghbwWKBWolo8Cc",
+  // apiSecret: "",
 });
 
 app.use(cors());
